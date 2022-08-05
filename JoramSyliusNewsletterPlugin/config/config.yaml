@@ -1,0 +1,48 @@
+sylius_grid:
+    grids:
+        joram_admin_grid_newsletter:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Joram\SyliusNewsletterPlugin\Entity\Newsletter
+            fields:
+                subject:
+                    type: string
+                    label: sylius.ui.subject
+                content:
+                    type: string
+                    label: sylius.ui.content
+                    enabled: false
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+
+
+sylius_resource:
+    resources:
+        joram.newsletter:
+            driver: doctrine/orm
+            classes:
+                repository: Joram\SyliusNewsletterPlugin\Repo\NewsletterRepository
+                form: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterType
+                model: Joram\SyliusNewsletterPlugin\Entity\Newsletter
+sylius_mailer:
+    emails:
+        joram_newsletter:
+            subject: "Newsletter"
+            template: 'Email/newsletter.html.twig'
+            
+framework:
+    messenger:
+        routing:
+            'Symfony\Component\Mailer\Messenger\SendEmailMessage':  async
+        transports:
+            async: 
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        reset_on_message: true

@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@JoramSyliusNewsletterPlugin/config/config.yaml" }

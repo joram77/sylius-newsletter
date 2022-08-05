@@ -1,0 +1,6 @@
+joram:
+    ui:
+        newsletters: Newsletters
+        subscribers: Subscribers
+        edit_newsletter: Edit newsletter
+        new_newsletter: Create newsletter

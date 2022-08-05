@@ -1,0 +1,5 @@
+sylius_paypal_webhook:
+    resource: "@SyliusPayPalPlugin/Resources/config/webhook_routing.yaml"
+
+joram_sylius_newsletter_plugin:
+    resource: "@JoramSyliusNewsletterPlugin/config/routing.yaml"

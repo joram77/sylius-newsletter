@@ -1,0 +1,14 @@
+services:
+    joram.admin.menu_builder_listener:
+        class: Joram\SyliusNewsletterPlugin\EventListener\MenuBuilderListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addBackendMenuItems }
+    joram.form.extension.type.customer_profile:
+        class: Joram\SyliusNewsletterPlugin\Form\Extension\CustomerProfileTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType, priority: -5  }
+    joram.command.newsletter_send:
+        class: Joram\SyliusNewsletterPlugin\Command\NewsletterSendCommand
+        tags:
+            - { name: console.command }
+        autowire: true

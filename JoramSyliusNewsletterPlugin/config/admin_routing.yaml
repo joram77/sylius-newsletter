@@ -1,0 +1,14 @@
+# Define your own admin routes here
+joram_admin_newsletter:
+    resource: |
+        alias: joram.newsletter
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: joram_admin_grid_newsletter
+        vars:
+            all:
+                subheader: joram.ui.newsletters
+            index:
+                icon: 'envelope outline'
+    type: sylius.resource
