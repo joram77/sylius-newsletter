@@ -78,8 +78,8 @@ class NewsletterSendService
                 $errors .= "Error sending to 1 recipient " . $e->getMessage() . "\n";
             }
             if ($i % self::FREE_SERVICES_MEMORY_NUM_RECORDS == 0) {
-                $this->newsletterSendCommand->getEntityManager()->clear();
-                $this->newsletterSendCommand->getMessageLoggerListener()->reset();
+                $this->entityManager->clear();
+                $this->messageLoggerListener->reset();
                 /*$this->registry->reset();*/
             }
         }
