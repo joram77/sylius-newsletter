@@ -56,14 +56,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Joram\\SyliusNewsletterPlugin\\": "src/",
-            "Joram\\SyliusNewsletterPlugin\\": "tests/"
+            "Joram\\SyliusNewsletterPlugin\\": "src/"
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/Application/Kernel.php"
-        ]
+        "psr-4": {
+            "Joram\\SyliusNewsletterPlugin\\": "tests/"
+        }
     },
     "scripts": {
 
