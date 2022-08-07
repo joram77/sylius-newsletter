@@ -27,12 +27,11 @@ class NewsletterSendService
     private EntityManagerInterface $entityManager;
     private ContainerInterface $container;
     private MessageLoggerListener $messageLoggerListener;
-    private ManagerRegistry $registry;
     private Environment $templating;
 
 
     public function __construct(NewsletterRepository $newsletterRepository, MailerInterface $mailer,
-                                EntityManagerInterface $em, ContainerInterface $container, ManagerRegistry $registry,
+                                EntityManagerInterface $em, ContainerInterface $container,
                                 Environment $templating
     )
     {
@@ -41,7 +40,6 @@ class NewsletterSendService
         $this->entityManager = $em;
         $this->container = $container;
         $this->messageLoggerListener = $container->get('joram.mailer.message_logger_listener');
-        $this->registry = $registry;
         $this->templating = $templating;
     }
 
