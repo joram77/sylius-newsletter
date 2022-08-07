@@ -63,7 +63,7 @@ class NewsletterSendService
             foreach ($newsletter->getSubscribers() as $subscriber) {
                 $parsedContent = $template->render(array('first_name' => $subscriber->getFirstname(),
                     'newsletter_name' => $newsletter->getSubject()));
-                if ($output != null && $i !== 0) {
+                if ($i !== 0) {
                     NewsletterSendCommand::clearLine($output);
                 }
                 $i++;
