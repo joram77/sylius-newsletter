@@ -67,7 +67,7 @@ class NewsletterSendService
                     NewsletterSendCommand::clearLine($output);
                 }
                 $i++;
-                echo 'Sent to subscriber ' . $i . ' of ' . $numSubscribers . "\n";
+                echo 'Send to subscriber ' . $i . ' of ' . $numSubscribers . "\n";
                 $mail = (new Email())->from('no-reply@netenders.com');
                 $mail->to($subscriber->getUser()->getEmail())
                     ->subject($newsletter->getSubject())
