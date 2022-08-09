@@ -68,7 +68,7 @@ class NewsletterSendService
                 }
                 $i++;
                 echo 'Send to subscriber ' . $i . ' of ' . $numSubscribers . "\n";
-                $mail = (new Email())->from('no-reply@netenders.com');
+                $mail = new Email();
                 $mail->to($subscriber->getUser()->getEmail())
                     ->subject($newsletter->getSubject())
                     ->html($parsedContent);
