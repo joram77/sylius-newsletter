@@ -25,6 +25,7 @@ class NewsletterType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->add('subject', TextType::class);
         $defaultContent = $this->defaultContent;
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($defaultContent) {
             $newsletter = $event->getData();
@@ -39,27 +40,6 @@ class NewsletterType extends AbstractType
                 );
             } else $form->add('content', TextareaType::class);
         });
-        $builder->addEventListener(FormEvents::POST_SET_DATA, function (FormEvent $event) {
-            $builder = $event->getForm();
-            $newsletter = $event->getData();
-            $nid = $newsletter->getId();
-            $builder->add('subject', TextType::class)
-                ->add('subscribers', EntityType::class, [
-                    'choice_label' => 'user.email',
-                    'expanded' => true,
-                    'class' => Customer::class,
-                    'label' => 'joram.ui.subscribers',
-                    'multiple' => true,
-                    'disabled' => true,
-                    'query_builder' => function (EntityRepository $er) use ($nid) {
-                        return $er->createQueryBuilder('customer')
-                            ->innerJoin('customer.subscriptions', 'newsletter_join')
-                            ->where('newsletter_join.id = :newsletterId')
-                            ->setParameter('newsletterId', $nid);
-                    }
-                ]);
 
-
-        });
     }
 }

@@ -12,3 +12,17 @@ joram_admin_newsletter:
             index:
                 icon: 'envelope outline'
     type: sylius.resource
+    
+joram_admin_newsletter_subscribers:
+    resource: |
+        alias: joram.newsletter_subscribers
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: joram_admin_grid_newsletter_subscribers
+        vars:
+            all:
+                subheader: joram.ui.newsletter_subscribers
+            index:
+                icon: 'circular users'
+    type: sylius.resource

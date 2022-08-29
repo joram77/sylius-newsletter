@@ -22,8 +22,28 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
-
-
+        joram_admin_grid_newsletter_subscribers:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: App\Entity\Customer\Customer
+            fields:
+                user:
+                    type: string
+                    label: sylius.ui.subject
+            actions:
+                item:
+                    delete:
+                        type: delete
+                    update:
+                        type: update
+            filters:
+                subscription:
+                    type: newsletter_subscription
+    templates:
+        filter:
+            newsletter_subscription: 'Grid/Filter/newsletter_subscription.html.twig'
+                        
 sylius_resource:
     resources:
         joram.newsletter:
@@ -32,6 +52,12 @@ sylius_resource:
                 repository: Joram\SyliusNewsletterPlugin\Repo\NewsletterRepository
                 form: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterType
                 model: Joram\SyliusNewsletterPlugin\Entity\Newsletter
+        joram.newsletter_subscribers:
+            driver: doctrine/orm
+            classes:
+                repository: Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository
+                form: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType
+                model: App\Entity\Customer\Customer
 sylius_mailer:
     emails:
         joram_newsletter:

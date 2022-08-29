@@ -6,9 +6,16 @@ services:
     joram.form.extension.type.customer_profile:
         class: Joram\SyliusNewsletterPlugin\Form\Extension\CustomerProfileTypeExtension
         tags:
-            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType, priority: -5  }
+            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType }
     joram.command.newsletter_send:
         class: Joram\SyliusNewsletterPlugin\Command\NewsletterSendCommand
         tags:
             - { name: console.command }
         autowire: true
+    joram.grid.filter.newsletter_subscription:
+        class: Joram\SyliusNewsletterPlugin\Grid\Filter\NewsletterSubscriptionFilter
+        tags:
+            -
+                name: sylius.grid_filter
+                type: newsletter_subscription
+                form_type: Joram\SyliusNewsletterPlugin\Grid\Filter\NewsletterSubscriptionFilterType
