@@ -19,3 +19,14 @@ services:
                 name: sylius.grid_filter
                 type: newsletter_subscription
                 form_type: Joram\SyliusNewsletterPlugin\Grid\Filter\NewsletterSubscriptionFilterType
+    joram.newsletter.form.type:
+        class: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterType
+        tags:
+            - { name: form.type }
+        arguments: ['%joram.model.newsletter.class%', ['sylius']]
+        
+    joram.newsletter_translation.form.type:
+        class: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterTranslationType
+        tags:
+            - { name: form.type }
+        arguments: ['%joram.model.newsletter_translation.class%', ['sylius']]

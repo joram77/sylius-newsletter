@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Joram\Entity\Customer;
+namespace Joram\SyliusNewsletterPlugin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Joram\SyliusNewsletterPlugin\Entity\CustomerNewsletterTrait;
 use Sylius\Component\Core\Model\Customer as BaseCustomer;
 
 /**

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Joram\SyliusNewsletterPlugin\Form\Extension;
 
+use App\Entity\Locale\Locale;
 use Sylius\Bundle\CustomerBundle\Form\Type\CustomerProfileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Joram\SyliusNewsletterPlugin\Entity\Newsletter;
 
@@ -23,7 +25,13 @@ final class CustomerProfileTypeExtension extends AbstractTypeExtension
                 'required' => false,
                 'query_builder' => null,
                 'by_reference' => true,
-            ));
+            ))
+            ->add('locale', EntityType::class, [
+                'class' => Locale::class,
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'by_reference' => true,]);
     }
 
     public static function getExtendedTypes(): iterable

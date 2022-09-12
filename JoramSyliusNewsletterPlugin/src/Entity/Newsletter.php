@@ -9,15 +9,24 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Joram\SyliusNewsletterPlugin\Repo\NewsletterRepository;
 use App\Entity\Customer;
-use Symfony\Component\Validator\Constraints as Assert;
+use Sylius\Component\Resource\Model\TranslatableInterface;
+use Sylius\Component\Resource\Model\TranslatableTrait;
+use Sylius\Component\Resource\Model\TranslationInterface;
 
 /**
  * @ORM\Entity(repositoryClass=NewsletterRepository::class)
  * @ORM\Table(name="sylius_newsletter")
-
  */
-class Newsletter implements ResourceInterface
+class Newsletter implements ResourceInterface, TranslatableInterface
 {
+    use TranslatableTrait {
+        TranslatableTrait::__construct as private initializeTranslationsCollection;
+    }
+
+    public function __construct()
+    {
+        $this->initializeTranslationsCollection();
+    }
 
     /**
      * @ORM\Id
@@ -26,29 +35,28 @@ class Newsletter implements ResourceInterface
      */
     protected $id;
 
-    /**
-    * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    protected string $subject;
-
-    /**
-     * @ORM\Column(type="text", length=255)
-     * @Assert\NotBlank
-     */
-    protected string $content;
 
     /**
      * @ManyToMany(targetEntity="App\Entity\Customer\Customer", mappedBy="subscriptions")
      */
     protected Collection $subscribers;
 
+    public function getSubject(): string
+    {
+        return $this->getTranslation()->getSubject();
+    }
+
+    public function setSubject($subject)
+    {
+        $this->getTranslation()->setSubject($subject);
+    }
+
     /**
      * @return string
      */
     public function getContent(): string
     {
-        return $this->content;
+        return $this->getTranslation()->getContent();
     }
 
     /**
@@ -56,23 +64,15 @@ class Newsletter implements ResourceInterface
      */
     public function setContent(string $content): void
     {
-        $this->content = $content;
+        $this->getTranslation()->setContent($content);
     }
+
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getSubject()
-    {
-        return $this->subject;
-    }
-
-    public function setSubject($subject)
-    {
-        $this->subject = $subject;
-    }
 
     /**
      * @return Collection
@@ -95,4 +95,10 @@ class Newsletter implements ResourceInterface
         return $this->getSubject();
     }
 
+
+    protected function createTranslation(): TranslationInterface
+    {
+        // TODO: Implement createTranslation() method.
+        return new NewsletterTranslation();
+    }
 }

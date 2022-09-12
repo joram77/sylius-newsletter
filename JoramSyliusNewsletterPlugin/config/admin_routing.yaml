@@ -9,6 +9,8 @@ joram_admin_newsletter:
         vars:
             all:
                 subheader: joram.ui.newsletters
+                templates:
+                    form: Newsletter/_form.html.twig
             index:
                 icon: 'envelope outline'
     type: sylius.resource

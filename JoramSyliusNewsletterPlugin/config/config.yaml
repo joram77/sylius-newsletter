@@ -52,6 +52,10 @@ sylius_resource:
                 repository: Joram\SyliusNewsletterPlugin\Repo\NewsletterRepository
                 form: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterType
                 model: Joram\SyliusNewsletterPlugin\Entity\Newsletter
+            translation:
+                classes:
+                    model: Joram\SyliusNewsletterPlugin\Entity\NewsletterTranslation
+                    form: Joram\SyliusNewsletterPlugin\Form\Type\NewsletterTranslationType
         joram.newsletter_subscribers:
             driver: doctrine/orm
             classes:
